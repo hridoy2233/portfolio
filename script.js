@@ -51,7 +51,7 @@ sr.reveal('.home-content p, .about-content', { origin: 'right' });
 
 // tyed js
 const typed = new Typed('.multiple-text', {
-  strings: ['Frontend Developer', 'UI/UX desiger', ' Python Devlopers'],
+  strings: ['Frontend Developer', 'UI/UX Desiger', ' Python Devloper'],
   typeSpeed: 100,
   backSpeed: 100,
   backDelay: 1000,
