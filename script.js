@@ -51,9 +51,36 @@ sr.reveal('.home-content p, .about-content', { origin: 'right' });
 
 // tyed js
 const typed = new Typed('.multiple-text', {
-  strings: ['Frontend Developer', 'UI/UX Desiger', ' Python Devloper'],
+  strings: ['Frontend Developer', 'UI/UX Desiger', ' Python Developer'],
   typeSpeed: 100,
   backSpeed: 100,
   backDelay: 1000,
   loop: true,
 });
+
+// 
+  (function () {
+    emailjs.init("service_r1fy7cc"); 
+   
+  })();
+
+  document.getElementById("contact-form").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    emailjs.sendForm(
+      "service_r1fy7cc",    
+      "template_m8k8qr3",  
+      this
+    ).then(
+      function() {
+        document.getElementById("status").innerText =
+          "Message sent successfully ✅";
+        document.getElementById("contact-form").reset();
+      },
+      function(error) {
+        document.getElementById("status").innerText =
+          "Message not sent ❌";
+        console.log(error);
+      }
+    );
+  });
