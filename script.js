@@ -62,35 +62,38 @@ const typed = new Typed('.multiple-text', {
 //emailjs
 
  (function() {
-    emailjs.init("Vr2p935zp8DZDIzVe"); // তোমার User ID
+    emailjs.init("Vr2p935zp8DZDIzVe");
   })();
 
-  // Form submit event
-  document.getElementById("contact-form").addEventListener("submit", function(e) {
-    e.preventDefault(); // Form submit রোধ
+  const toast = document.getElementById("toast");
 
-    // Form থেকে values নেওয়া
+  function showToast(message, isError = false) {
+    toast.innerText = message;
+    toast.className = isError ? "show error" : "show";
+    setTimeout(() => {
+      toast.className = toast.className.replace("show", "");
+    }, 3000); // 3 seconds
+  }
+
+  document.getElementById("contact-form").addEventListener("submit", function(e) {
+    e.preventDefault();
+
     const name = this.name.value;
     const email = this.email.value;
     const phone = this.phone.value;
     const subject = this.subject.value;
     const message = this.message.value;
 
-    // EmailJS send
     emailjs.send("service_r1fy7cc", "template_cjt2277", {
-      name: name,
-      email: email,
-      phone: phone,
-      subject: subject,
-      message: message
+      name, email, phone, subject, message
     })
     .then(function(response) {
       console.log("SUCCESS!", response.status, response.text);
-      document.getElementById("status").innerText = "Message sent successfully ✅";
+      showToast("Message sent successfully ✅");
       document.getElementById("contact-form").reset();
     })
     .catch(function(error) {
       console.error("FAILED...", error);
-      document.getElementById("status").innerText = "Message not sent ❌";
+      showToast("Message not sent ❌", true);
     });
   });
