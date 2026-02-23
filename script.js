@@ -61,27 +61,36 @@ const typed = new Typed('.multiple-text', {
 
 //emailjs
 
-
-  (function () {
-    emailjs.init("Vr2p935zp8DZDIzVe"); 
-  
+ (function() {
+    emailjs.init("Vr2p935zp8DZDIzVe"); // তোমার User ID
   })();
 
+  // Form submit event
   document.getElementById("contact-form").addEventListener("submit", function(e) {
-    e.preventDefault();
+    e.preventDefault(); // Form submit রোধ
 
-    emailjs.sendForm(
-      "service_r1fy7cc",     
-      "template_cjt2277",     
-      this
-    ).then(
-      function() {
-        alert("Message sent successfully ✅");
-        document.getElementById("contact-form").reset();
-      },
-      function(error) {
-        alert("Message not sent ❌");
-        console.log(error);
-      }
-    );
+    // Form থেকে values নেওয়া
+    const name = this.name.value;
+    const email = this.email.value;
+    const phone = this.phone.value;
+    const subject = this.subject.value;
+    const message = this.message.value;
+
+    // EmailJS send
+    emailjs.send("service_r1fy7cc", "template_cjt2277", {
+      name: name,
+      email: email,
+      phone: phone,
+      subject: subject,
+      message: message
+    })
+    .then(function(response) {
+      console.log("SUCCESS!", response.status, response.text);
+      document.getElementById("status").innerText = "Message sent successfully ✅";
+      document.getElementById("contact-form").reset();
+    })
+    .catch(function(error) {
+      console.error("FAILED...", error);
+      document.getElementById("status").innerText = "Message not sent ❌";
+    });
   });
