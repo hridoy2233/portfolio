@@ -72,14 +72,14 @@ const typed = new Typed('.multiple-text', {
       "template_cjt2277",     // ✅ আপনার Template ID
       this
     ).then(
-      function() {
-        alert("Message sent successfully ✅");
-        document.getElementById("contact-form").reset();
+      function(){
+        messageBox.innerText = "✅ Message sent successfully!";
+        messageBox.className = "form-message success show";
+        form.reset();
       },
-      function(error) {
-        alert("Message not sent ❌");
-        console.log(error);
+      function(){
+        messageBox.innerText = "❌ Message not sent. Please try again.";
+        messageBox.className = "form-message error show";
       }
     );
   });
-
