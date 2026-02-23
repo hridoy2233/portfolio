@@ -455,3 +455,31 @@ section {
     margin-top: 2rem;
   }
 }
+#toast {
+    visibility: hidden;
+    min-width: 250px;
+    margin-left: -125px;
+    background-color: #4BB543; /* Success Green */
+    color: white;
+    text-align: center;
+    border-radius: 8px;
+    padding: 16px;
+    position: fixed;
+    z-index: 9999;
+    left: 50%;
+    bottom: 30px;
+    font-size: 17px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    transition: visibility 0s, opacity 0.5s linear;
+    opacity: 0;
+  }
+
+  #toast.show {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  /* Error Toast */
+  #toast.error {
+    background-color: #FF4C4C;
+  }
