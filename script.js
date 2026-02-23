@@ -58,28 +58,30 @@ const typed = new Typed('.multiple-text', {
   loop: true,
 });
 
-// 
+
+//emailjs
+
+
   (function () {
     emailjs.init("Vr2p935zp8DZDIzVe"); 
-    
+  
   })();
 
   document.getElementById("contact-form").addEventListener("submit", function(e) {
     e.preventDefault();
 
     emailjs.sendForm(
-      "service_r1fy7cc",      // ✅ আপনার Service ID
-      "template_cjt2277",     // ✅ আপনার Template ID
+      "service_r1fy7cc",     
+      "template_cjt2277",     
       this
     ).then(
-      function(){
-        messageBox.innerText = "✅ Message sent successfully!";
-        messageBox.className = "form-message success show";
-        form.reset();
+      function() {
+        alert("Message sent successfully ✅");
+        document.getElementById("contact-form").reset();
       },
-      function(){
-        messageBox.innerText = "❌ Message not sent. Please try again.";
-        messageBox.className = "form-message error show";
+      function(error) {
+        alert("Message not sent ❌");
+        console.log(error);
       }
     );
   });
