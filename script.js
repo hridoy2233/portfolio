@@ -60,27 +60,26 @@ const typed = new Typed('.multiple-text', {
 
 // 
   (function () {
-    emailjs.init("service_r1fy7cc"); 
-   
+    emailjs.init("Vr2p935zp8DZDIzVe"); 
+    
   })();
 
   document.getElementById("contact-form").addEventListener("submit", function(e) {
     e.preventDefault();
 
     emailjs.sendForm(
-      "service_r1fy7cc",    
-      "template_m8k8qr3",  
+      "service_r1fy7cc",      // ✅ আপনার Service ID
+      "template_cjt2277",     // ✅ আপনার Template ID
       this
     ).then(
       function() {
-        document.getElementById("status").innerText =
-          "Message sent successfully ✅";
+        alert("Message sent successfully ✅");
         document.getElementById("contact-form").reset();
       },
       function(error) {
-        document.getElementById("status").innerText =
-          "Message not sent ❌";
+        alert("Message not sent ❌");
         console.log(error);
       }
     );
   });
+
